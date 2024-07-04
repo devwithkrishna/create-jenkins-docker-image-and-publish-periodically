@@ -5,6 +5,8 @@ ARG JENKINS_USER
 ARG JENKINS_PASS
 # Added a label
 LABEL authors="githubofkrishnadhas"
+# Root user
+USER root
 # Install basic packages needed
 RUN apt-get update -y \
   && apt-get install --no-install-recommends -y -qq \
@@ -38,11 +40,13 @@ RUN  apt-get update -y && \
 # Install azure cli latest available version for debian
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Fetch the latest release data from GitHub API & Install Jenkins CLI to install plugin manager
-RUN latest_release=$(curl -s https://api.github.com/repos/jenkinsci/plugin-installation-manager-tool/releases/latest) && \
+RUN latest_release=$(curl -s https://api.github.com/repos/jenkinsci/plugin-installation-manager-tool/releases/latest | jq 'del(.body)') && \
+    echo "GitHub API response:" && echo "$latest_release" && \
     tag_name=$(echo "$latest_release" | jq -r .tag_name) && \
     echo "Latest release tag of plugin-installation-manager-tool: $tag_name" && \
     download_url=$(echo "$latest_release" | jq -r '.assets[] | select(.name | endswith(".jar")) | .browser_download_url') && \
-    curl -fsSL ${download_url} -o $JENKINS_HOME/jenkins-plugin-manager.jar
+    echo "Download URL: $download_url" && \
+    curl -fsSL "${download_url}" -o $JENKINS_HOME/jenkins-plugin-manager.jar
 # copy plugins.yaml file for installing plugins using jenkins cli
 COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 # Copy user.groovy to /usr/share/jenkins/ref/init.groovy.d/ where will setup the default admin user and password:
