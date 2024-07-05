@@ -1,5 +1,7 @@
 import jenkins.model.*
 import hudson.security.*
+import org.jenkinsci.plugins.matrixauth.*  // Import the necessary class
+
 
 def env = System.getenv()
 

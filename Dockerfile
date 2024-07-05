@@ -55,7 +55,12 @@ COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 COPY user.groovy /usr/share/jenkins/ref/init.groovy.d/
 # Install plugin using jenkins cli
 RUN java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml --plugin-download-directory ${JENKINS_HOME}/plugins --output yaml
+# File permissions for JENKINS_HOME for jenkins user
+RUN chown -R jenkins:jenkins /var/jenkins_home && \
+    chmod -R 755 /var/jenkins_home
 # Switching to default user
 USER jenkins
 # Skip initial setup
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+
+
