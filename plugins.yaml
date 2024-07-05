@@ -30,3 +30,4 @@ plugins:
   - artifactId: github-api
   - artifactId: git-client
   - artifactId: azure-ad
+  - artifactId: matrix-auth
