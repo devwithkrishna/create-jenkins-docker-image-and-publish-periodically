@@ -1,0 +1,31 @@
+name: build-publish-jenkins-image
+on:
+#  push:
+#    branches:
+#      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 5,20 * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      
+      - name: Build and publish docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}:${{ inputs.tag }}
+          build-args: |
+            "JENKINS_USER=${{ secrets.JENKINS_USER }}"
+            "JENKINS_PASS=${{ secrets.JENKINS_PASS }}"

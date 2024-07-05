@@ -1,0 +1,36 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - gitHubApp:
+            appID: "${GITHUB_APP_ID}"
+            description: "GitHub app"
+            id: "${GITHUB_APP_ID}"
+            privateKey: "${GITHUB_APP_KEY}"
+
+# setting basic number of job executors in jenkins master as 6
+    numExecutors: 6
+# Providing default permission for users through `authenticated` group that can login to jenkins
+    authorizationStrategy:
+      globalMatrix:
+        entries:
+        - group:
+          name: "authenticated"
+          permissions:
+            - "Agent/Build"
+            - "Agent/Configure"
+            - "Agent/Create"
+            - "Credentials/Create"
+            - "Credentials/Update"
+            - "Credentials/View"
+            - "Job/Build"
+            - "Job/Cancel"
+            - "Job/Configure"
+            - "Job/Create"
+            - "Job/Move"
+            - "Job/Read"
+            - "Overall/Read"
+            - "View/Configure"
+            - "View/Create"
+            - "View/Read"
+# ref https://www.roger.ml/p/jenkins-ci-github-app-authentication

@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080 # For UI use
+      - 50000:50000 # Slave agent port
+    container_name: jenkins
+    environment:
+      - JENKINS_ADMIN
+      - JENKINS_ADMIN_PASSWORD
+      - GITHUB_APP_KEY
+      - GITHUB_APP_ID
+#      - JAVA_OPTS="-Djenkins.install.runSetupWizard=false" this is already passed as an env variable in build time and will be present
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - jenkins
+volumes:
+  jenkins-data:
+    driver: local
+networks:
+  jenkins:
