@@ -3,6 +3,8 @@ FROM jenkins/jenkins:lts-jdk11
 # Jenkins default user and password will be passed on run time
 ARG JENKINS_USER
 ARG JENKINS_PASS
+ENV JENKINS_PASS=${JENKINS_PASS}
+ENV JENKINS_USER=${JENKINS_USER}
 # Added a label
 LABEL authors="githubofkrishnadhas"
 # Root user
