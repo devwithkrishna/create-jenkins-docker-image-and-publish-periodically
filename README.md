@@ -9,9 +9,11 @@ Create jenkins docker images and build them periodicaly and scan using trivy
 
 * user.groovy --> This creates a user with name as of `JENKINS_USER` and with password `JENKINS_PASS` who will be the default user and security will be enabled using `Jenkins OWN Databse` by default.
 
+* number_of_executors.groovy --> this script is used to increase the `numOfExecutors` in Jenkins from 2 to `x` where `x` is the value of numberOfExecutors provided in the script.
+
 * get_latest_version_create_tag.sh --> gets the tag to create on github and set it as a github env variable and push tag to github
 
-* config-as-code.yaml --> This uses Configuration as Code plugin from Jenkins to set up some default settings like setting up a GitHub App as a credential, default executors count etc.
+* config-as-code.yaml --> This uses Configuration as Code plugin from Jenkins to set up some default settings like setting up a GitHub App as a credential.
 
 * **To use JCasC, you need to install the Configuration as Code plugin.** [configuration-as-code](https://plugins.jenkins.io/configuration-as-code/)
 
@@ -50,7 +52,7 @@ Eg:  docker build --build-arg JENKINS_USER=user --build-arg JENKINS_PASS=passwor
     Details can be found here - [github-app-auth](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth)
 
 * Post generating the Private key of GitHub app, this needs to be converted into a specific format 
-    Use the command [here](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth#_converting_the_private_key_for_jenkins) 
+    Use the command [here](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth#_converting_the_private_key_for_jenkins) , This will be the value we will be passing as `GITHUB_APP_KEY`
 
   ```
   openssl pkcs8 -topk8 -inform PEM -outform PEM -in <key-in-your-downloads-folder.pem> -out <converted-github-app.pem> -nocrypt
@@ -59,3 +61,5 @@ Eg:  docker build --build-arg JENKINS_USER=user --build-arg JENKINS_PASS=passwor
   * <converted-github-app.pem> --> The converted output which you need to update to jenkins.
 
 I am passing the `GITHUB_APP_KEY` & `GITHUB_APP_ID` at build time from github secrets and storing it as env variables in image.
+
+# Image 👉 [jenkins-core-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image)

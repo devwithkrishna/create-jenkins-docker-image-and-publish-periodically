@@ -78,7 +78,7 @@ jobs:
       - name: Write to workflow job summary
         run: |
           SUMMARY=$'# Building jenkins-core-image\n'
-          SUMMARY=$'[jenkins-core-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image)'
-          SUMMARY+=$'**Job Start 📅Time:** ${{ env.JOB_START_TIME }}\n'
-          SUMMARY+=$'**Job End📅 Time:** ${{ env.JOB_END_TIME }}\n'
+          SUMMARY=$'[jenkins-core-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image)\n'
+          SUMMARY+=$'**Job Start 📅 Time:** ${{ env.JOB_START_TIME }}\n'
+          SUMMARY+=$'**Job End 📅 Time:** ${{ env.JOB_END_TIME }}\n'
           echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
