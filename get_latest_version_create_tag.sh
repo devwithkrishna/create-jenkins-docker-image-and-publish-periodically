@@ -3,10 +3,9 @@
 # Function to increment the version number
 increment_version() {
     local v=$1
-    local prefix=""
+    local prefix="v"
     # Check if the version has a 'v' prefix and remove it
     if [[ $v == v* ]]; then
-        prefix="v"
         v=${v#v}
     fi
 
