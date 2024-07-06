@@ -29,7 +29,7 @@ jobs:
           
           # Commit the version file update
           git status
-          git add  .\version.txt
+          git add  ./version.txt
           git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version to $NEW_VERSION"
           
           # Tag the commit with the new version
