@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function to increment the version number
 increment_version() {
     local v=$1
@@ -25,5 +27,6 @@ NEW_VERSION=$(increment_version $VERSION)
 
 # Update the version file with the new version
 echo $NEW_VERSION > version.txt
+
 echo "NEW_VERSION=${NEW_VERSION}" >> "$GITHUB_ENV"
 
