@@ -14,6 +14,7 @@ if(!(jenkins.getAuthorizationStrategy() instanceof GlobalMatrixAuthorizationStra
 
 def user = jenkins.getSecurityRealm().createAccount(env.JENKINS_USER, env.JENKINS_PASS)
 user.save()
+// provide admin access to jenkins_user which is passed by user
 jenkins.getAuthorizationStrategy().add(Jenkins.ADMINISTER, env.JENKINS_USER)
 
 jenkins.save()

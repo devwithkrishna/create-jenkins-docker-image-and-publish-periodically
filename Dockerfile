@@ -55,8 +55,8 @@ RUN latest_release=$(curl -s https://api.github.com/repos/jenkinsci/plugin-insta
     curl -fsSL "${download_url}" -o $JENKINS_HOME/jenkins-plugin-manager.jar
 # copy plugins.yaml file for installing plugins using jenkins cli
 COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
-# Copy user.groovy to /usr/share/jenkins/ref/init.groovy.d/ where will setup the default admin user and password:
-COPY user.groovy /usr/share/jenkins/ref/init.groovy.d/
+# Copy user.groovy,number_of_executors.groovy  to /usr/share/jenkins/ref/init.groovy.d/ where jenkins init scripts will run
+COPY *.groovy /usr/share/jenkins/ref/init.groovy.d/
 # Configuration as code and set as a environment variable
 COPY ./config-as-code.yaml $JENKINS_HOME/config-as-code.yaml
 ENV CASC_JENKINS_CONFIG=$JENKINS_HOME/config-as-code.yaml
