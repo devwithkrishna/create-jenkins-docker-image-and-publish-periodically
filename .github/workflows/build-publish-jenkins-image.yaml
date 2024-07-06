@@ -35,7 +35,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:${NEW_VERSION}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:$NEW_VERSION
           build-args: |
             "JENKINS_USER=${{ secrets.JENKINS_USER }}"
             "JENKINS_PASS=${{ secrets.JENKINS_PASS }}"
