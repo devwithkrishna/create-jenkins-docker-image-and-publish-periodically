@@ -1,0 +1,22 @@
+# Per https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+version: 2
+registries:
+  dockerhub:
+    type: docker-registry
+    url: registry.hub.docker.com
+    username: ${{ secrets.DOCKERHUB_USERNAME }}
+    password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+updates:
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 6
+    target-branch: main
+    commit-message:
+      # Prefix all commit messages with "[docker] " (no colon, but a trailing whitespace)
+      prefix: "[docker] "
+    reviewers:
+      - githubofkrishnadhas
+    labels:
+      - docker-package-dependancy
