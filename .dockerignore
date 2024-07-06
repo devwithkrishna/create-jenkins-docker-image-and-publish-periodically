@@ -2,3 +2,4 @@ LICENSE
 README.md
 .gitignore
 .github/**
+get_latest_version_create_tag.sh

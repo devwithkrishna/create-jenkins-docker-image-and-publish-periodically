@@ -43,4 +43,17 @@ Eg:  docker build --build-arg JENKINS_USER=user --build-arg JENKINS_PASS=passwor
 
 :pushpin:These values **GITHUB_APP_KEY** , **GITHUB_APP_ID** will be passed as environment variables on deployment time either through docker compose file or as -e flag.
 
+# Things to remember
+* When configuring up the GitHub app credential in Jenkins, it needs to be in a specific format .
+    Details can be found here - [github-app-auth](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth)
 
+* Post generating the Private key of GitHub app, this needs to be converted into a specific format 
+    Use the command [here](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/github-app-auth#_converting_the_private_key_for_jenkins) 
+
+  ```
+  openssl pkcs8 -topk8 -inform PEM -outform PEM -in <key-in-your-downloads-folder.pem> -out <converted-github-app.pem> -nocrypt
+  ```
+  * <key-in-your-downloads-folder.pem> --> Replace with your pem file path of app private key.
+  * <converted-github-app.pem> --> The converted output which you need to update to jenkins.
+
+I am passing the `GITHUB_APP_KEY` & `GITHUB_APP_ID` at build time from github secrets and storing it as env variables in image.

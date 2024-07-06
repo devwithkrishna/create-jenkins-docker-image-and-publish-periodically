@@ -3,8 +3,12 @@ FROM jenkins/jenkins:lts-jdk11
 # Jenkins default user and password will be passed on run time
 ARG JENKINS_USER
 ARG JENKINS_PASS
+ARG GITHUB_APP_KEY
+ARG GITHUB_APP_ID
 ENV JENKINS_PASS=${JENKINS_PASS}
-ENV JENKINS_USER=${JENKINS_USER}
+ENV JENKINS_PASS=${JENKINS_PASS}
+ENV GITHUB_APP_KEY=${GITHUB_APP_KEY}
+ENV GITHUB_APP_ID=${GITHUB_APP_ID}
 # Added a label
 LABEL authors="githubofkrishnadhas"
 # Root user

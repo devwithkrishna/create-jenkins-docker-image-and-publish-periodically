@@ -15,17 +15,51 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Git config and create new tag
+        run: |
+          # Run bash script to get new tag
+          bash get_latest_version_create_tag.sh
+          
+          # Setting local user and email
+          git config --local user.email "devwithkrishna-github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "devwithkrishna github actions [bot]"
+          
+          # Commit the version file update
+          git add version.txt
+          git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version to ${NEW_VERSION}"
+          
+          # Tag the commit with the new version
+          git tag -a "${NEW_VERSION}" -m "Release version ${NEW_VERSION}"
+          
+          # Push the commit and the tag to the remote repository
+          git push origin main --follow-tags
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
       
-      - name: Build and publish docker image
+      - name: Build and publish docker image with tag
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}:${{ inputs.tag }}
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:$NEW_VERSION
           build-args: |
             "JENKINS_USER=${{ secrets.JENKINS_USER }}"
             "JENKINS_PASS=${{ secrets.JENKINS_PASS }}"
+            "GITHUB_APP_KEY=${{ secrets.GH_APP_KEY }}"
+            "GITHUB_APP_ID=${{ secrets.GH_APP_ID }}"    
+
+      - name: Build and Publish docker image with latest tag
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:latest
+          build-args: |
+            "JENKINS_USER=${{ secrets.JENKINS_USER }}"
+            "JENKINS_PASS=${{ secrets.JENKINS_PASS }}"
+            "GITHUB_APP_KEY=${{ secrets.GH_APP_KEY }}"
+            "GITHUB_APP_ID=${{ secrets.GH_APP_ID }}"
