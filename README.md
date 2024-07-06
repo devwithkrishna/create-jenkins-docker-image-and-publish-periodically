@@ -9,6 +9,8 @@ Create jenkins docker images and build them periodicaly and scan using trivy
 
 * user.groovy --> This creates a user with name as of `JENKINS_USER` and with password `JENKINS_PASS` who will be the default user and security will be enabled using `Jenkins OWN Databse` by default.
 
+* get_latest_version_create_tag.sh --> gets the tag to create on github and set it as a github env variable and push tag to github
+
 * config-as-code.yaml --> This uses Configuration as Code plugin from Jenkins to set up some default settings like setting up a GitHub App as a credential, default executors count etc.
 
 * **To use JCasC, you need to install the Configuration as Code plugin.** [configuration-as-code](https://plugins.jenkins.io/configuration-as-code/)
