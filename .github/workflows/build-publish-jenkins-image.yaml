@@ -19,12 +19,16 @@ jobs:
         run: |
           # Run bash script to get new tag
           bash get_latest_version_create_tag.sh
+          cat $GITHUB_ENV
           
           # Setting local user and email
           git config --local user.email "devwithkrishna-github-actions[bot]@users.noreply.github.com"
           git config --local user.name "devwithkrishna github actions [bot]"
           
+          git config --list
+          
           # Commit the version file update
+          git status
           git add version.txt
           git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version to ${NEW_VERSION}"
           
