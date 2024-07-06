@@ -10,14 +10,17 @@ on:
 permissions:
   contents: write
 
-
+run-name: build-publish-jenkins-core-image
 jobs:
-  deploy:
+  build-publish-jenkins-image:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set job start time
+        run: echo "JOB_START_TIME=$(date -u +"%d %B %A %Y %H:%M UTC")" >> $GITHUB_ENV
 
       - name: Git config and create new tag
         run: |
@@ -68,3 +71,14 @@ jobs:
           set -x
           docker version
           docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image  ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:latest
+
+      - name: Set job end time
+        run: echo "JOB_END_TIME=$(date -u +"%d %B %A %Y %H:%M UTC")" >> $GITHUB_ENV
+
+      - name: Write to workflow job summary
+        run: |
+          SUMMARY=$'# Building jenkins-core-image\n'
+          SUMMARY=$'[jenkins-core-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image)'
+          SUMMARY+=$'**Job Start 📅Time:** ${{ env.JOB_START_TIME }}\n'
+          SUMMARY+=$'**Job End📅 Time:** ${{ env.JOB_END_TIME }}\n'
+          echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
