@@ -30,7 +30,7 @@ echo "New version after incrementing: $NEW_VERSION"
 echo $NEW_VERSION > version.txt
 echo "Updated version in version.txt: $NEW_VERSION"
 echo "NEW_VERSION=$NEW_VERSION" >> "$GITHUB_ENV"
-echo "Set NEW_VERSION=${NEW_VERSION} in GitHub environment"
+echo "Set NEW_VERSION=$NEW_VERSION in GitHub environment"
 
 # Setting local user and email
 git config --local user.email "devwithkrishna-github-actions[bot]@users.noreply.github.com"

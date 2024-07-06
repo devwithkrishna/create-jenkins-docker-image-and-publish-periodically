@@ -37,8 +37,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
         
       - name: Build and publish docker image with tag
-        env:
-          NEW_VERSION: $NEW_VERSION
+#        env:
+#          NEW_VERSION: $NEW_VERSION
         uses: docker/build-push-action@v5
         with:
           push: true
