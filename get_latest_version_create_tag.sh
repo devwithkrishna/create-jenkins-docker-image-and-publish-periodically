@@ -21,12 +21,13 @@ increment_version() {
 
 # Read the current version from the version file and trim any trailing newlines
 VERSION=$(cat version.txt | tr -d '\n')
+echo "Current version read from version.txt: $VERSION"
 
 # Increment the version
 NEW_VERSION=$(increment_version $VERSION)
+echo "New version after incrementing: $NEW_VERSION"
 
 # Update the version file with the new version
 echo $NEW_VERSION > version.txt
-
+echo "Updated version in version.txt: $NEW_VERSION"
 echo "NEW_VERSION=${NEW_VERSION}" >> "$GITHUB_ENV"
-
