@@ -33,3 +33,17 @@ echo "Updated version in version.txt: $NEW_VERSION"
 echo "{NEW_VERSION}=${NEW_VERSION}" >> "$GITHUB_ENV"
 echo "Set NEW_VERSION=${NEW_VERSION} in GitHub environment"
 
+# Setting local user and email
+git config --local user.email "devwithkrishna-github-actions[bot]@users.noreply.github.com"
+git config --local user.name "devwithkrishna github actions [bot]"
+
+# Commit the version file update
+git add version.txt
+git status
+git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version to $NEW_VERSION"
+
+# Tag the commit with the new version
+git tag -a $NEW_VERSION -m "Release version $NEW_VERSION"
+
+# Push the commit and the tag to the remote repository
+git push origin main --follow-tags
