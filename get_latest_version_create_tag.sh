@@ -30,6 +30,6 @@ echo "New version after incrementing: $NEW_VERSION"
 # Update the version file with the new version
 echo $NEW_VERSION > version.txt
 echo "Updated version in version.txt: $NEW_VERSION"
-echo "NEW_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+echo "{NEW_VERSION}=${NEW_VERSION}" >> "$GITHUB_ENV"
 echo "Set NEW_VERSION=${NEW_VERSION} in GitHub environment"
 
