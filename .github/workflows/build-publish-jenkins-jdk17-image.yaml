@@ -45,6 +45,7 @@ jobs:
 #          NEW_VERSION: $NEW_VERSION
         uses: docker/build-push-action@v5
         with:
+          file: jdk-17/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |

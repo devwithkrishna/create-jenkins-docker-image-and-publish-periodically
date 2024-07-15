@@ -46,6 +46,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          file: jdk-21/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-jdk21-image:${{ env.NEW_VERSION }}
