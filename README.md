@@ -1,6 +1,14 @@
 # create-jenkins-docker-image-and-publish-periodically
 Create jenkins docker images and build them periodicaly and scan using trivy
 
+# Images being built and updated
+
+| Image Name                                   | jdk version |
+|----------------------------------------------|--------------|
+| dockerofkrishnadhas/jenkins-core-image       | jdk11 |
+| dockerofkrishnadhas/jenkins-core-jdk17-image | jdk17 |
+| dockerofkrishnadhas/jenkins-core-jdk21-image | jdk21 |
+
 # How everything works
 
 * Dockerfile --> The core instructions on building jenkins docker image

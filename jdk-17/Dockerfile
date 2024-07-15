@@ -1,5 +1,5 @@
-# Base image referring official build from jenkins - jdk 11
-FROM jenkins/jenkins:lts-jdk11
+# Base image referring official build from jenkins - jdk 17
+FROM jenkins/jenkins:lts-jdk17
 # Jenkins default user and password will be passed on run time
 ARG JENKINS_USER
 ARG JENKINS_PASS
@@ -58,7 +58,7 @@ COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 # Copy user.groovy,number_of_executors.groovy  to /usr/share/jenkins/ref/init.groovy.d/ where jenkins init scripts will run
 COPY *.groovy /usr/share/jenkins/ref/init.groovy.d/
 # Configuration as code and set as a environment variable
-COPY ./config-as-code.yaml $JENKINS_HOME/config-as-code.yaml
+COPY config-as-code.yaml $JENKINS_HOME/config-as-code.yaml
 ENV CASC_JENKINS_CONFIG=$JENKINS_HOME/config-as-code.yaml
 # Install plugin using jenkins cli
 RUN java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml --plugin-download-directory ${JENKINS_HOME}/plugins --output yaml

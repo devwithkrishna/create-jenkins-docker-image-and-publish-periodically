@@ -3,7 +3,7 @@ services:
   jenkins:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: <jdk-x>/Dockerfile # replace x with 11 or 17 or 21 as erquired
     restart: always
     ports:
       - 8080:8080 # For UI use
