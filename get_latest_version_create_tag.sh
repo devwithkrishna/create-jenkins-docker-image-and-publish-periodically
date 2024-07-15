@@ -17,9 +17,9 @@ increment_version() {
         echo "${prefix}${part1}.$((part2+1))" # Increment patch by 1.
     fi
 }
-
-# Read the current version from the version file and trim any trailing newlines
-VERSION=$(cat version.txt | tr -d '\n')
+file_name=$1
+# Read the current version from the version file which is received as a input param and trim any trailing newlines
+VERSION=$(cat $1 | tr -d '\n')
 echo "Current version read from version.txt: $VERSION"
 
 # Increment the version
@@ -37,12 +37,9 @@ git config --local user.email "devwithkrishna-github-actions[bot]@users.noreply.
 git config --local user.name "devwithkrishna github actions [bot]"
 
 # Commit the version file update
-git add version.txt
+git add version*.txt
 git status
-git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version to $NEW_VERSION"
-
-# Tag the commit with the new version
-git tag -a $NEW_VERSION -m "Release version $NEW_VERSION"
+git commit --author="devwithkrishna github actions [bot] <devwithkrishna-github-actions[bot]@users.noreply.github.com>" -m "Increment version in $1 to $NEW_VERSION"
 
 # Push the commit and the tag to the remote repository
 git push origin main --follow-tags
