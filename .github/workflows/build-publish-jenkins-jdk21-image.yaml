@@ -1,4 +1,4 @@
-name: build-publish-jenkins-jdk11-image
+name: build-publish-jenkins-jdk21-image
 on:
 #  push:
 #    branches:
@@ -10,9 +10,9 @@ on:
 permissions:
   contents: write
 
-run-name: build-publish-jenkins-jdk11-image
+run-name: build-publish-jenkins-jdk21-image
 jobs:
-  build-publish-jenkins-jdk11-image:
+  build-publish-jenkins-jdk21-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -48,8 +48,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:${{ env.NEW_VERSION }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-jdk21-image:${{ env.NEW_VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-jdk21-image:latest
           build-args: |
             "JENKINS_USER=${{ secrets.JENKINS_USER }}"
             "JENKINS_PASS=${{ secrets.JENKINS_PASS }}"
@@ -61,15 +61,15 @@ jobs:
       - run: |
           set -x
           docker version
-          docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:latest
+          docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-jdk21-image:latest
 
       - name: Set job end time
         run: echo "JOB_END_TIME=$(date -u +"%d %B %A %Y %H:%M UTC")" >> $GITHUB_ENV
 
       - name: Write to workflow job summary
         run: |
-          SUMMARY=$'# Building jenkins-core-image\n'
-          SUMMARY=$'[jenkins-core-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image)\n'
+          SUMMARY=$'# Building jenkins-core-jdk21-image\n'
+          SUMMARY=$'[jenkins-core-jdk21-image available here](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-jdk21-image)\n'
           SUMMARY+=$'**Job Start 📅 Time:** ${{ env.JOB_START_TIME }}\n'
           SUMMARY+=$'**Job End 📅 Time:** ${{ env.JOB_END_TIME }}\n'
           echo "$SUMMARY" >> $GITHUB_STEP_SUMMARY
