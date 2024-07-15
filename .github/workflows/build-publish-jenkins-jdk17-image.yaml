@@ -5,7 +5,7 @@ on:
 #      - main
   workflow_dispatch:
   schedule:
-    - cron: '0 0 5,20 * *'
+    - cron: '30 10 5,20 * *' # morning 10:30 am on 5th and 20th of every month
 
 permissions:
   contents: write
@@ -45,6 +45,7 @@ jobs:
 #          NEW_VERSION: $NEW_VERSION
         uses: docker/build-push-action@v5
         with:
+          file: jdk-17/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |

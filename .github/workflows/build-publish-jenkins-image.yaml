@@ -5,7 +5,7 @@ on:
 #      - main
   workflow_dispatch:
   schedule:
-    - cron: '0 0 5,20 * *'
+    - cron: '0 10 5,20 * *' # morning 10 am on 5th and 20th of every month
 
 permissions:
   contents: write
@@ -46,6 +46,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          file: jdk-11/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/jenkins-core-image:${{ env.NEW_VERSION }}
