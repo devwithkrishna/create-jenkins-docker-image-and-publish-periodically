@@ -1,9 +1,6 @@
 # create-jenkins-docker-image-and-publish-periodically
 Create jenkins docker images and build them periodicaly and scan using trivy
 
-[![This is maintained by githubofkrishnadhas](https://img.shields.io/badge/This%20is%20maintained%20by%githubofkrishnadhas-858287)]
-
-
 # Images being built and updated
 
 | Image Name                                   | jdk version |
