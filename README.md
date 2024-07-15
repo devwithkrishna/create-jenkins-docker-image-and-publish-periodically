@@ -1,6 +1,26 @@
 # create-jenkins-docker-image-and-publish-periodically
 Create jenkins docker images and build them periodicaly and scan using trivy
 
+[![Generic badge](https://img.shields.io/badge/maintained-yes-6acb14.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/maintained%20by-githubofkrishnadhas-6acb14.svg)](https://shields.io/)
+
+[![build-publish-jenkins-jdk11-image](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-image.yaml/badge.svg)](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-image.yaml)
+[![build-publish-jenkins-jdk17-image](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-jdk17-image.yaml/badge.svg)](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-jdk17-image.yaml)
+[![build-publish-jenkins-jdk21-image](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-jdk21-image.yaml/badge.svg)](https://github.com/devwithkrishna/create-jenkins-docker-image-and-publish-periodically/actions/workflows/build-publish-jenkins-jdk21-image.yaml)
+
+![Github stars](https://badgen.net/github/stars/devwithkrishna/create-jenkins-docker-image-and-publish-periodically?icon=github&label=stars)
+![Github forks](https://badgen.net/github/forks/devwithkrishna/create-jenkins-docker-image-and-publish-periodically?icon=github&label=forks)
+![Github issues](https://img.shields.io/github/issues/devwithkrishna/create-jenkins-docker-image-and-publish-periodically)
+![Github last commit](https://img.shields.io/github/last-commit/devwithkrishna/create-jenkins-docker-image-and-publish-periodically)
+
+[![Docker Pulls](https://badgen.net/docker/pulls/dockerofkrishnadhas/jenkins-core-image?icon=docker&label=jenkins-core-image%20pulls)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image/)
+[![Docker Pulls](https://badgen.net/docker/pulls/dockerofkrishnadhas/jenkins-core-jdk17-image?icon=docker&label=jenkins-core-jdk17-image%20pulls)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-jdk17-image/)
+[![Docker Pulls](https://badgen.net/docker/pulls/dockerofkrishnadhas/jenkins-core-jdk21-image?icon=docker&label=jenkins-core-jdk21-image%20pulls)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-jdk21-image/)
+
+[![Docker Image Size](https://badgen.net/docker/size/dockerofkrishnadhas/jenkins-core-image?icon=docker&label=jenkins-core-image-image%20size)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-image/)
+[![Docker Image Size](https://badgen.net/docker/size/dockerofkrishnadhas/jenkins-core-jdk17-image?icon=docker&label=jenkins-core-jdk17-image%20size)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-jdk17-image/)
+[![Docker Image Size](https://badgen.net/docker/size/dockerofkrishnadhas/jenkins-core-jdk21-image?icon=docker&label=jenkins-core-jdk21-image%20size)](https://hub.docker.com/r/dockerofkrishnadhas/jenkins-core-jdk21-image/)
+
 # Images being built and updated
 
 | Image Name                                   | jdk version |
