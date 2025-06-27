@@ -1,5 +1,5 @@
 # Base image referring official build from jenkins - jdk 11
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:lts-jdk21
 # Jenkins default user and password will be passed on run time
 ARG JENKINS_USER
 ARG JENKINS_PASS
